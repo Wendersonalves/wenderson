@@ -1,0 +1,158 @@
+{% comment %} Floating Header - CW Games {% endcomment %}
+<div class="announcement-bar" id="announcement-bar">
+  <div class="announcement-bar__inner">
+    <p>{{ section.settings.announcement_text | default: '🎮 Frete grátis acima de R$299 | Parcele em até 12x sem juros! 🕹️' }}</p>
+  </div>
+</div>
+
+<header class="site-header" id="site-header" role="banner">
+  <div class="site-header__container">
+    <button class="site-header__mobile-menu" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="hamburger"><span></span><span></span><span></span></span>
+    </button>
+    <a href="/" class="site-header__logo" aria-label="{{ shop.name }}">
+      {% if section.settings.logo %}
+        <img src="{{ section.settings.logo | image_url: width: 160 }}" alt="{{ shop.name }}" width="160" height="48" loading="eager" class="site-header__logo-img">
+      {% else %}
+        <div class="site-header__logo-text">
+          <span class="logo-cw">CW</span><span class="logo-games">GAMES</span>
+        </div>
+      {% endif %}
+    </a>
+    <nav class="site-header__nav" id="main-nav" aria-label="Menu principal">
+      <ul class="nav-list">
+        <li class="nav-item nav-item--has-dropdown">
+          <a href="/collections/jogos" class="nav-link">Jogos <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+          <div class="nav-dropdown"><div class="nav-dropdown__inner">
+            <div class="nav-dropdown__column">
+              <p class="nav-dropdown__heading">Por Plataforma</p>
+              <a href="/collections/jogos-playstation" class="nav-dropdown__link">PlayStation 5</a>
+              <a href="/collections/jogos-xbox" class="nav-dropdown__link">Xbox Series</a>
+              <a href="/collections/jogos-nintendo-switch" class="nav-dropdown__link">Nintendo Switch</a>
+              <a href="/collections/jogos-pc" class="nav-dropdown__link">PC / Steam</a>
+            </div>
+            <div class="nav-dropdown__column">
+              <p class="nav-dropdown__heading">Por Gênero</p>
+              <a href="/collections/acao" class="nav-dropdown__link">Ação &amp; Aventura</a>
+              <a href="/collections/rpg" class="nav-dropdown__link">RPG</a>
+              <a href="/collections/esportes" class="nav-dropdown__link">Esportes</a>
+              <a href="/collections/corrida" class="nav-dropdown__link">Corrida</a>
+            </div>
+            <div class="nav-dropdown__column">
+              <p class="nav-dropdown__heading">Especiais</p>
+              <a href="/collections/lancamentos" class="nav-dropdown__link nav-dropdown__link--highlight">Lançamentos</a>
+              <a href="/collections/jogos-usados" class="nav-dropdown__link">Jogos Usados</a>
+              <a href="/collections/promocoes-jogos" class="nav-dropdown__link">Promoções</a>
+            </div>
+          </div></div>
+        </li>
+        <li class="nav-item nav-item--has-dropdown">
+          <a href="/collections/consoles" class="nav-link">Consoles <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+          <div class="nav-dropdown"><div class="nav-dropdown__inner">
+            <div class="nav-dropdown__column">
+              <p class="nav-dropdown__heading">Novos</p>
+              <a href="/collections/playstation-5" class="nav-dropdown__link">PlayStation 5</a>
+              <a href="/collections/xbox-series" class="nav-dropdown__link">Xbox Series X/S</a>
+              <a href="/collections/nintendo-switch" class="nav-dropdown__link">Nintendo Switch</a>
+            </div>
+            <div class="nav-dropdown__column">
+              <p class="nav-dropdown__heading">Retrô &amp; Usados</p>
+              <a href="/collections/retro" class="nav-dropdown__link">Consoles Retrô</a>
+              <a href="/collections/consoles-usados" class="nav-dropdown__link">Consoles Usados</a>
+              <a href="/collections/portateis" class="nav-dropdown__link">Portáteis</a>
+            </div>
+          </div></div>
+        </li>
+        <li class="nav-item nav-item--has-dropdown">
+          <a href="/collections/controles" class="nav-link">Controles <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+          <div class="nav-dropdown"><div class="nav-dropdown__inner">
+            <div class="nav-dropdown__column">
+              <p class="nav-dropdown__heading">Por Marca</p>
+              <a href="/collections/controles-sony" class="nav-dropdown__link">Sony (DualSense)</a>
+              <a href="/collections/controles-microsoft" class="nav-dropdown__link">Microsoft (Xbox)</a>
+              <a href="/collections/controles-nintendo" class="nav-dropdown__link">Nintendo</a>
+            </div>
+            <div class="nav-dropdown__column">
+              <p class="nav-dropdown__heading">Tipo</p>
+              <a href="/collections/controles-sem-fio" class="nav-dropdown__link">Sem Fio</a>
+              <a href="/collections/controles-com-fio" class="nav-dropdown__link">Com Fio</a>
+              <a href="/collections/controles-usados" class="nav-dropdown__link">Usados</a>
+            </div>
+          </div></div>
+        </li>
+        <li class="nav-item nav-item--has-dropdown">
+          <a href="/collections/acessorios" class="nav-link">Acessórios <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+          <div class="nav-dropdown"><div class="nav-dropdown__inner">
+            <div class="nav-dropdown__column">
+              <p class="nav-dropdown__heading">Acessórios</p>
+              <a href="/collections/headsets" class="nav-dropdown__link">Headsets</a>
+              <a href="/collections/cartoes-memoria" class="nav-dropdown__link">Cartões de Memória</a>
+              <a href="/collections/cabos" class="nav-dropdown__link">Cabos &amp; Adaptadores</a>
+              <a href="/collections/capas-bolsas" class="nav-dropdown__link">Capas &amp; Bolsas</a>
+            </div>
+          </div></div>
+        </li>
+        <li class="nav-item"><a href="/collections/retro" class="nav-link">Retrô</a></li>
+        <li class="nav-item"><a href="/collections/usados" class="nav-link nav-link--highlight">Usados</a></li>
+        <li class="nav-item"><a href="/pages/ofertas" class="nav-link nav-link--sale">Ofertas 🔥</a></li>
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <button class="site-header__action-btn site-header__search-btn" aria-label="Buscar" id="search-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+      {% if shop.customer_accounts_enabled %}
+        <a href="/account" class="site-header__action-btn" aria-label="Minha conta">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </a>
+      {% endif %}
+      <a href="/wishlist" class="site-header__action-btn" aria-label="Lista de desejos">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      </a>
+      <a href="/cart" class="site-header__action-btn site-header__cart-btn" aria-label="Carrinho" id="cart-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-count" id="cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menu mobile" aria-hidden="true">
+    <div class="mobile-nav__inner">
+      <ul class="mobile-nav__list">
+        <li class="mobile-nav__item mobile-nav__item--has-sub">
+          <button class="mobile-nav__link mobile-nav__toggle">Jogos <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+          <ul class="mobile-nav__sub">
+            <li><a href="/collections/jogos-playstation" class="mobile-nav__sub-link">PlayStation 5</a></li>
+            <li><a href="/collections/jogos-xbox" class="mobile-nav__sub-link">Xbox Series</a></li>
+            <li><a href="/collections/jogos-nintendo-switch" class="mobile-nav__sub-link">Nintendo Switch</a></li>
+            <li><a href="/collections/jogos-usados" class="mobile-nav__sub-link">Jogos Usados</a></li>
+          </ul>
+        </li>
+        <li class="mobile-nav__item mobile-nav__item--has-sub">
+          <button class="mobile-nav__link mobile-nav__toggle">Consoles <svg class="nav-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+          <ul class="mobile-nav__sub">
+            <li><a href="/collections/playstation-5" class="mobile-nav__sub-link">PlayStation 5</a></li>
+            <li><a href="/collections/xbox-series" class="mobile-nav__sub-link">Xbox Series X/S</a></li>
+            <li><a href="/collections/nintendo-switch" class="mobile-nav__sub-link">Nintendo Switch</a></li>
+            <li><a href="/collections/consoles-usados" class="mobile-nav__sub-link">Consoles Usados</a></li>
+            <li><a href="/collections/retro" class="mobile-nav__sub-link">Consoles Retrô</a></li>
+          </ul>
+        </li>
+        <li class="mobile-nav__item"><a href="/collections/controles" class="mobile-nav__link">Controles</a></li>
+        <li class="mobile-nav__item"><a href="/collections/acessorios" class="mobile-nav__link">Acessórios</a></li>
+        <li class="mobile-nav__item"><a href="/collections/retro" class="mobile-nav__link">Retrô</a></li>
+        <li class="mobile-nav__item"><a href="/collections/usados" class="mobile-nav__link">Usados</a></li>
+        <li class="mobile-nav__item"><a href="/pages/ofertas" class="mobile-nav__link mobile-nav__link--sale">Ofertas 🔥</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Cabeçalho",
+  "settings": [
+    {"type":"image_picker","id":"logo","label":"Logo"},
+    {"type":"text","id":"announcement_text","label":"Texto do anúncio","default":"🎮 Frete grátis acima de R$299 | Parcele em até 12x sem juros! 🕹️"}
+  ]
+}
+{% endschema %}
