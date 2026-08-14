@@ -1,0 +1,77 @@
+{% comment %} Hero Banner - CW Games {% endcomment %}
+<section class="hero-banner" id="hero-banner">
+  <div class="hero-slider" id="hero-slider">
+    {% for block in section.blocks %}
+      {% if block.type == 'slide' %}
+        <div class="hero-slide {% if forloop.first %}hero-slide--active{% endif %}" {{ block.shopify_attributes }}>
+          {% if block.settings.background_image %}
+            <div class="hero-slide__bg">
+              <img src="{{ block.settings.background_image | image_url: width: 1600 }}" alt="{{ block.settings.title }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" class="hero-slide__img">
+              <div class="hero-slide__overlay"></div>
+            </div>
+          {% else %}
+            <div class="hero-slide__bg hero-slide__bg--gradient"></div>
+          {% endif %}
+          <div class="hero-slide__content">
+            {% if block.settings.eyebrow %}<span class="hero-eyebrow">{{ block.settings.eyebrow }}</span>{% endif %}
+            {% if block.settings.title %}<h2 class="hero-title">{{ block.settings.title }}</h2>{% endif %}
+            {% if block.settings.subtitle %}<p class="hero-subtitle">{{ block.settings.subtitle }}</p>{% endif %}
+            <div class="hero-actions">
+              {% if block.settings.cta_text %}<a href="{{ block.settings.cta_url | default: '/collections/all' }}" class="btn btn--hero btn--primary">{{ block.settings.cta_text }}</a>{% endif %}
+              {% if block.settings.cta2_text %}<a href="{{ block.settings.cta2_url | default: '/collections/all' }}" class="btn btn--hero btn--ghost">{{ block.settings.cta2_text }}</a>{% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="hero-slide hero-slide--active">
+        <div class="hero-slide__bg hero-slide__bg--gradient"></div>
+        <div class="hero-slide__content">
+          <span class="hero-eyebrow">Bem-vindo à</span>
+          <h2 class="hero-title">CW Games</h2>
+          <p class="hero-subtitle">Sua loja especializada em jogos, consoles, controles e muito mais!</p>
+          <div class="hero-actions">
+            <a href="/collections/all" class="btn btn--hero btn--primary">Ver todos os produtos</a>
+            <a href="/collections/lancamentos" class="btn btn--hero btn--ghost">Lançamentos</a>
+          </div>
+        </div>
+        <div class="hero-slide__decoration">
+          <div class="hero-float hero-float--1">🎮</div>
+          <div class="hero-float hero-float--2">🕹️</div>
+          <div class="hero-float hero-float--3">⭐</div>
+          <div class="hero-float hero-float--4">🎯</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% if section.blocks.size > 1 %}
+    <div class="hero-controls">
+      <button class="hero-prev" aria-label="Slide anterior"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+      <div class="hero-dots" id="hero-dots">
+        {% for block in section.blocks %}{% if block.type == 'slide' %}<button class="hero-dot {% if forloop.first %}hero-dot--active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Ir para slide {{ forloop.index }}"></button>{% endif %}{% endfor %}
+      </div>
+      <button class="hero-next" aria-label="Próximo slide"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Banner Hero",
+  "max_blocks": 5,
+  "blocks": [{
+    "type": "slide","name": "Slide",
+    "settings": [
+      {"type":"image_picker","id":"background_image","label":"Imagem de fundo"},
+      {"type":"text","id":"eyebrow","label":"Texto acima","default":"Novidade"},
+      {"type":"text","id":"title","label":"Título","default":"Novo Lançamento"},
+      {"type":"textarea","id":"subtitle","label":"Subtítulo","default":"Confira as novidades da CW Games"},
+      {"type":"text","id":"cta_text","label":"Botão 1","default":"Comprar agora"},
+      {"type":"url","id":"cta_url","label":"Link botão 1"},
+      {"type":"text","id":"cta2_text","label":"Botão 2","default":"Ver mais"},
+      {"type":"url","id":"cta2_url","label":"Link botão 2"}
+    ]
+  }],
+  "presets": [{"name": "Banner Hero","blocks": [{"type": "slide"}]}]
+}
+{% endschema %}

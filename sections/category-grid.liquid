@@ -1,0 +1,92 @@
+{% comment %} Category Grid - CW Games {% endcomment %}
+<section class="category-grid section-padding">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title | default: 'Explore por Categoria' }}</h2>
+      {% if section.settings.subtitle %}<p class="section-subtitle">{{ section.settings.subtitle }}</p>{% endif %}
+    </div>
+    <div class="category-grid__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'category' %}
+          <a href="{{ block.settings.url | default: '/collections/all' }}" class="category-card category-card--{{ block.settings.color_variant | default: 'blue' }}" {{ block.shopify_attributes }}>
+            <div class="category-card__inner">
+              {% if block.settings.image %}
+                <div class="category-card__img-wrap"><img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title }}" loading="lazy" class="category-card__img"></div>
+              {% else %}
+                <div class="category-card__icon">{{ block.settings.emoji | default: '🎮' }}</div>
+              {% endif %}
+              <div class="category-card__content">
+                <h3 class="category-card__title">{{ block.settings.title }}</h3>
+                {% if block.settings.description %}<p class="category-card__desc">{{ block.settings.description }}</p>{% endif %}
+                <span class="category-card__cta">Explorar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% else %}
+        <a href="/collections/jogos" class="category-card category-card--blue">
+          <div class="category-card__inner">
+            <div class="category-card__icon">🎮</div>
+            <div class="category-card__content"><h3 class="category-card__title">Jogos</h3><p class="category-card__desc">PS5, Xbox, Switch e mais</p><span class="category-card__cta">Explorar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+          </div>
+        </a>
+        <a href="/collections/consoles" class="category-card category-card--dark">
+          <div class="category-card__inner">
+            <div class="category-card__icon">🖥️</div>
+            <div class="category-card__content"><h3 class="category-card__title">Consoles</h3><p class="category-card__desc">Novos e usados</p><span class="category-card__cta">Explorar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+          </div>
+        </a>
+        <a href="/collections/controles" class="category-card category-card--blue-light">
+          <div class="category-card__inner">
+            <div class="category-card__icon">🕹️</div>
+            <div class="category-card__content"><h3 class="category-card__title">Controles</h3><p class="category-card__desc">Para todos os consoles</p><span class="category-card__cta">Explorar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+          </div>
+        </a>
+        <a href="/collections/acessorios" class="category-card category-card--purple">
+          <div class="category-card__inner">
+            <div class="category-card__icon">🎧</div>
+            <div class="category-card__content"><h3 class="category-card__title">Acessórios</h3><p class="category-card__desc">Headsets, capas e mais</p><span class="category-card__cta">Explorar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+          </div>
+        </a>
+        <a href="/collections/retro" class="category-card category-card--orange">
+          <div class="category-card__inner">
+            <div class="category-card__icon">👾</div>
+            <div class="category-card__content"><h3 class="category-card__title">Vídeo Game Retrô</h3><p class="category-card__desc">Clássicos inesquecíveis</p><span class="category-card__cta">Explorar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+          </div>
+        </a>
+        <a href="/collections/usados" class="category-card category-card--green">
+          <div class="category-card__inner">
+            <div class="category-card__icon">♻️</div>
+            <div class="category-card__content"><h3 class="category-card__title">Usados</h3><p class="category-card__desc">Economize com qualidade</p><span class="category-card__cta">Explorar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span></div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Grade de Categorias",
+  "settings": [
+    {"type":"text","id":"title","label":"Título","default":"Explore por Categoria"},
+    {"type":"text","id":"subtitle","label":"Subtítulo"}
+  ],
+  "blocks": [{
+    "type": "category","name": "Categoria",
+    "settings": [
+      {"type":"text","id":"title","label":"Título","default":"Jogos"},
+      {"type":"text","id":"description","label":"Descrição"},
+      {"type":"url","id":"url","label":"Link"},
+      {"type":"image_picker","id":"image","label":"Imagem"},
+      {"type":"text","id":"emoji","label":"Emoji (sem imagem)","default":"🎮"},
+      {"type":"select","id":"color_variant","label":"Cor","options":[
+        {"value":"blue","label":"Azul"},{"value":"dark","label":"Escuro"},
+        {"value":"blue-light","label":"Azul Claro"},{"value":"purple","label":"Roxo"},
+        {"value":"orange","label":"Laranja"},{"value":"green","label":"Verde"}
+      ],"default":"blue"}
+    ]
+  }],
+  "presets": [{"name": "Grade de Categorias"}]
+}
+{% endschema %}

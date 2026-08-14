@@ -1,0 +1,45 @@
+{% comment %} Featured Collection - CW Games {% endcomment %}
+{% assign collection = collections[section.settings.collection] %}
+<section class="featured-collection section-padding">
+  <div class="container">
+    <div class="section-header section-header--flex">
+      <div>
+        <h2 class="section-title">{{ section.settings.title | default: collection.title | default: 'Produtos em Destaque' }}</h2>
+        {% if section.settings.subtitle %}<p class="section-subtitle">{{ section.settings.subtitle }}</p>{% endif %}
+      </div>
+      {% if collection %}<a href="{{ collection.url }}" class="btn btn--outline">Ver todos</a>{% endif %}
+    </div>
+    <div class="product-grid">
+      {% if collection and collection.products_count > 0 %}
+        {% assign products_limit = section.settings.products_count | default: 8 %}
+        {% for product in collection.products limit: products_limit %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% else %}
+        {% for i in (1..8) %}
+          <div class="product-card product-card--placeholder">
+            <div class="product-card__img-wrap">{{ 'product-' | append: i | placeholder_svg_tag: 'product-card__placeholder-img' }}</div>
+            <div class="product-card__info">
+              <p class="product-card__brand">CW Games</p>
+              <h3 class="product-card__title">Produto de Exemplo {{ i }}</h3>
+              <div class="product-card__price"><span class="product-card__price-current">R$ 299,90</span></div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Coleção em Destaque",
+  "settings": [
+    {"type":"text","id":"title","label":"Título","default":"Produtos em Destaque"},
+    {"type":"text","id":"subtitle","label":"Subtítulo"},
+    {"type":"collection","id":"collection","label":"Coleção"},
+    {"type":"range","id":"products_count","label":"Qtd produtos","min":4,"max":16,"step":4,"default":8}
+  ],
+  "presets": [{"name": "Coleção em Destaque"}]
+}
+{% endschema %}

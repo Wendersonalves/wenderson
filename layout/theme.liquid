@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0d47a1">
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+    </title>
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+    <link rel="canonical" href="{{ canonical_url }}">
+    {% if settings.favicon %}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {% endif %}
+    {{ content_for_header }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
+    <a class="skip-to-content" href="#main-content">Pular para o conteúdo</a>
+    {% sections 'header' %}
+    <main id="main-content" role="main">
+      {{ content_for_layout }}
+    </main>
+    {% sections 'footer' %}
+    <div id="cart-drawer" class="cart-drawer" aria-hidden="true">
+      <div class="cart-drawer__overlay"></div>
+      <div class="cart-drawer__panel">
+        <div class="cart-drawer__header">
+          <h2 class="cart-drawer__title">Carrinho</h2>
+          <button class="cart-drawer__close" aria-label="Fechar carrinho">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div class="cart-drawer__body">
+          <div class="cart-drawer__empty">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <p>Seu carrinho está vazio</p>
+            <a href="/collections/all" class="btn btn--primary">Explorar produtos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="search-overlay" class="search-overlay" aria-hidden="true">
+      <div class="search-overlay__inner">
+        <button class="search-overlay__close" aria-label="Fechar busca">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <form action="/search" method="get" class="search-overlay__form">
+          <input type="hidden" name="type" value="product">
+          <div class="search-overlay__input-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="search" name="q" placeholder="Buscar jogos, consoles, acessórios..." class="search-overlay__input" autocomplete="off">
+          </div>
+          <button type="submit" class="btn btn--primary">Buscar</button>
+        </form>
+        <div class="search-overlay__suggestions">
+          <p class="search-overlay__suggestions-title">Categorias populares</p>
+          <div class="search-overlay__tags">
+            <a href="/collections/jogos" class="search-tag">Jogos</a>
+            <a href="/collections/consoles" class="search-tag">Consoles</a>
+            <a href="/collections/controles" class="search-tag">Controles</a>
+            <a href="/collections/acessorios" class="search-tag">Acessórios</a>
+            <a href="/collections/retro" class="search-tag">Retrô</a>
+            <a href="/collections/usados" class="search-tag">Usados</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ 'theme.js' | asset_url | script_tag }}
+  </body>
+</html>
