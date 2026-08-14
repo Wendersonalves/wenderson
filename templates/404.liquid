@@ -1,0 +1,26 @@
+{% comment %} 404 Page - CW Games {% endcomment %}
+
+<div class="error-page">
+  <div class="error-page__inner">
+    <div class="error-page__code">404</div>
+    <div class="error-page__icon">🎮</div>
+    <h1 class="error-page__title">Game Over — Página não encontrada</h1>
+    <p class="error-page__desc">Parece que essa página foi parar em outro nível. Volte para a loja e continue jogando!</p>
+    <div class="error-page__actions">
+      <a href="/" class="btn btn--primary">Ir para o início</a>
+      <a href="/collections/all" class="btn btn--outline">Ver todos os produtos</a>
+    </div>
+  </div>
+</div>
+
+<style>
+.error-page { min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 60px 20px; background: var(--grad-hero); }
+.error-page__inner { color: var(--white); max-width: 480px; }
+.error-page__code { font-family: var(--font-heading); font-size: clamp(6rem, 20vw, 10rem); font-weight: 700; line-height: 1; opacity: .2; }
+.error-page__icon { font-size: 4rem; margin: -40px 0 16px; }
+.error-page__title { font-family: var(--font-heading); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; margin-bottom: 16px; }
+.error-page__desc { font-size: 1rem; opacity: .8; margin-bottom: 32px; line-height: 1.7; }
+.error-page__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.error-page__actions .btn--outline { border-color: rgba(255,255,255,.5); color: var(--white); }
+.error-page__actions .btn--outline:hover { background: rgba(255,255,255,.15); }
+</style>

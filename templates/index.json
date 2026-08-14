@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "hero-banner": {
+      "type": "hero-banner",
+      "blocks": {},
+      "block_order": [],
+      "settings": {}
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {}
+    },
+    "category-grid": {
+      "type": "category-grid",
+      "settings": {
+        "title": "Explore por Categoria",
+        "subtitle": "Tudo que um gamer precisa em um só lugar"
+      }
+    },
+    "featured-collection-1": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Lançamentos",
+        "subtitle": "Os títulos mais esperados chegaram!",
+        "products_count": 8
+      }
+    },
+    "promo-banner": {
+      "type": "promo-banner",
+      "blocks": {},
+      "block_order": [],
+      "settings": {}
+    },
+    "featured-collection-2": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Mais Vendidos",
+        "subtitle": "Os favoritos da nossa comunidade",
+        "products_count": 8
+      }
+    }
+  },
+  "order": [
+    "hero-banner",
+    "trust-bar",
+    "category-grid",
+    "featured-collection-1",
+    "promo-banner",
+    "featured-collection-2"
+  ]
+}

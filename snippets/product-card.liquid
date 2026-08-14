@@ -1,0 +1,48 @@
+{% comment %} Product Card Snippet {% endcomment %}
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-card__link" aria-label="{{ product.title }}">
+    <div class="product-card__img-wrap">
+      {% if product.images.size > 0 %}
+        <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="400" height="400" class="product-card__img">
+        {% if product.images.size > 1 %}
+          <img src="{{ product.images[1] | image_url: width: 400 }}" alt="{{ product.images[1].alt | default: product.title | escape }}" loading="lazy" width="400" height="400" class="product-card__img product-card__img--hover">
+        {% endif %}
+      {% else %}
+        {{ product | placeholder_svg_tag: 'product-card__placeholder-img' }}
+      {% endif %}
+      {% if product.compare_at_price > product.price %}
+        {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+        <span class="product-card__badge product-card__badge--sale">-{{ discount }}%</span>
+      {% elsif product.tags contains 'usado' %}
+        <span class="product-card__badge product-card__badge--used">Usado</span>
+      {% elsif product.tags contains 'retro' %}
+        <span class="product-card__badge product-card__badge--retro">Retrô</span>
+      {% endif %}
+      <div class="product-card__overlay">
+        <button class="product-card__quick-add btn btn--primary" data-product-id="{{ product.id }}" data-variant-id="{{ product.first_available_variant.id }}" aria-label="Adicionar {{ product.title }} ao carrinho">
+          {% if product.available %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Adicionar
+          {% else %}
+            Indisponível
+          {% endif %}
+        </button>
+      </div>
+    </div>
+  </a>
+  <div class="product-card__info">
+    {% if product.vendor %}<p class="product-card__brand">{{ product.vendor }}</p>{% endif %}
+    <h3 class="product-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <div class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <span class="product-card__price-compare">{{ product.compare_at_price | money }}</span>
+        <span class="product-card__price-current product-card__price-current--sale">{{ product.price | money }}</span>
+      {% else %}
+        <span class="product-card__price-current">{{ product.price | money }}</span>
+      {% endif %}
+      {% assign installment = product.price | divided_by: 12 %}
+      {% if installment >= 500 %}<span class="product-card__installment">12x de {{ installment | money }}</span>{% endif %}
+    </div>
+    {% unless product.available %}<p class="product-card__unavailable">Indisponível</p>{% endunless %}
+  </div>
+</div>

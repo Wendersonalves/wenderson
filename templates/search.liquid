@@ -1,0 +1,45 @@
+{% comment %} Search Results - CW Games {% endcomment %}
+
+<div class="search-results section-padding">
+  <div class="container">
+    <h1 class="search-results__title">
+      {% if search.performed %}
+        {% if search.results_count == 0 %}
+          Nenhum resultado para "{{ search.terms }}"
+        {% else %}
+          {{ search.results_count }} resultado{% if search.results_count > 1 %}s{% endif %} para "{{ search.terms }}"
+        {% endif %}
+      {% else %}
+        Buscar produtos
+      {% endif %}
+    </h1>
+
+    <form action="/search" method="get" class="search-results__form">
+      <input type="hidden" name="type" value="product">
+      <div class="search-results__input-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Buscar jogos, consoles, acessórios..." class="search-results__input" autofocus>
+      </div>
+      <button type="submit" class="btn btn--primary">Buscar</button>
+    </form>
+
+    {% if search.performed and search.results_count > 0 %}
+      <div class="product-grid" style="margin-top: 40px;">
+        {% for result in search.results %}
+          {% if result.object_type == 'product' %}
+            {% render 'product-card', product: result %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.search-results__title { font-family: var(--font-heading); font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; margin-bottom: 28px; }
+.search-results__form { display: flex; gap: 12px; max-width: 640px; }
+.search-results__input-wrap { flex: 1; position: relative; display: flex; align-items: center; }
+.search-results__input-wrap svg { position: absolute; left: 14px; color: var(--gray-400); }
+.search-results__input { width: 100%; height: 50px; padding: 0 16px 0 44px; border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-family: inherit; font-size: .95rem; outline: none; transition: border-color var(--transition); }
+.search-results__input:focus { border-color: var(--blue-400); }
+</style>
